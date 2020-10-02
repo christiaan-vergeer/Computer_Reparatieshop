@@ -4,26 +4,31 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Reparatie Opdrachten</h2>
+<br />
+<div class="panel panel-primary">
+   <div class="panel-heading">
+        in afwachting = @ViewBag.pending | in behandeling = @ViewBag.underway | wachten op onderdelen = @ViewBag.waitingforpart | klaar = @ViewBag.done
+   </div>
+</div>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Maak een nieuwe opdracht aan", "Create")
 </p>
-<div class="panel panel-primary">
-    <div class="panel-heading text-center">
-      in afwachting = @ViewBag.pending | in behandeling = @ViewBag.underway | wachten op onderdelen = @ViewBag.waitingforpart | klaar = @ViewBag.done
-    </div></div> 
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @*@Html.DisplayNameFor(model => model.Name)*@
+            Naam Opdracht
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Startdate)
+            @*@Html.DisplayNameFor(model => model.Startdate)*@
+            Startdatum
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Enddate)
+            @*@Html.DisplayNameFor(model => model.Enddate)*@
+            Einddatum
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Status)
@@ -33,7 +38,23 @@
 
     @foreach (var item in Model)
     {
-        <tr>
+        string backgroundClass = "background - color:#FFFFFF";
+
+        if (item.Startdate.Ticks<(DateTime.Now.Ticks- 864000000000) && item.Status.ToString() == "Pending")
+        {
+            backgroundClass = "background-color:#FF0000";
+        }
+        else if (item.Startdate.Ticks < (DateTime.Now.Ticks) && item.Status.ToString() == "Pending")
+        {
+            backgroundClass = "background-color:#FFA500";
+        }
+        else
+        {
+            backgroundClass = "background-color:#FFFFFF";
+        }
+
+
+        <tr style=@backgroundClass>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
@@ -43,13 +64,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Enddate)
             </td>
-            <td>            
+            <td>
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Pas Aan", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Verwijder", "Delete", new { id = item.Id })
             </td>
         </tr>
     }
