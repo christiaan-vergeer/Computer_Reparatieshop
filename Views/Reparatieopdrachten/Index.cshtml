@@ -40,7 +40,7 @@
     {
         string backgroundClass = "background - color:#FFFFFF";
 
-        if (item.Startdate.Ticks<(DateTime.Now.Ticks- 864000000000) && item.Status.ToString() == "Pending")
+        if (item.Startdate.Ticks < (DateTime.Now.Ticks - 864000000000) && item.Status.ToString() == "Pending")
         {
             backgroundClass = "background-color:#FF0000";
         }
@@ -51,6 +51,20 @@
         else
         {
             backgroundClass = "background-color:#FFFFFF";
+
+
+            if (item.Enddate.Ticks < (DateTime.Now.Ticks - 864000000000) && (item.Status.ToString() == "InProgress" || item.Status.ToString() == "WaitingForParts"))
+            {
+                backgroundClass = "background-color:#FF0000";
+            }
+            else if (item.Enddate.Ticks < (DateTime.Now.Ticks) && (item.Status.ToString() == "InProgress" || item.Status.ToString() == "WaitingForParts"))
+            {
+                backgroundClass = "background-color:#FFA500";
+            }
+            else
+            {
+                backgroundClass = "background-color:#FFFFFF";
+            }
         }
 
 
