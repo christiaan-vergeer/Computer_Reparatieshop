@@ -21,13 +21,29 @@ namespace Computer_Reparatieshop.Controllers
 
             //ViewBag.Message = "tabel met info";
             ViewBag.Message2 = "test";
-            ViewBag.pending = "test1";
-            ViewBag.underway = "test2";
-            ViewBag.waitingforpart = "test3";
-            ViewBag.done = "test4";
+            ViewBag.pending = Countstate(Status.Pending);
+            ViewBag.underway = Countstate(Status.InProgress);
+            ViewBag.waitingforpart = Countstate(Status.WaitingForParts);
+            ViewBag.done = Countstate(Status.Done);
 
-            
+
             return View(db.reparatieopdrachtens.ToList());
+        }
+
+        public int Countstate(Status statusRepair)
+        {
+            int count = 0;
+            var dbReparatiesList = db.reparatieopdrachtens.ToList();
+
+            for (int i = 0; i < dbReparatiesList.Count; i++)
+            {
+                if (dbReparatiesList[i].Status == statusRepair)
+                {
+                    count++;
+                }
+            }
+
+            return count;
         }
 
         // GET: Reparatieopdrachten/Details/5

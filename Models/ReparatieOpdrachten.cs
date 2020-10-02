@@ -28,7 +28,8 @@ namespace Computer_Reparatieshop.Models
     public enum Status
     {
         Pending,
-        Underway,
+        [Display(Name = "In Progress")]
+        InProgress,
         [Display(Name = "Wating for parts")]
         WaitingForParts,
         Done
