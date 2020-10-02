@@ -180,16 +180,15 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ReparatieController.cs" />
     <Compile Include="Controllers\ReparatieopdrachtenController.cs" />
     <Compile Include="DAL\ReparatieContext.cs" />
     <Compile Include="DAL\ReparatieInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202010021115360_init.cs" />
-    <Compile Include="Migrations\202010021115360_init.designer.cs">
-      <DependentUpon>202010021115360_init.cs</DependentUpon>
+    <Compile Include="Migrations\202010021130142_init.cs" />
+    <Compile Include="Migrations\202010021130142_init.designer.cs">
+      <DependentUpon>202010021130142_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -256,13 +255,12 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Reparatie\ReOpdracht.cshtml" />
-    <Content Include="Views\Reparatie\ReNewOpdracht.cshtml" />
     <Content Include="Views\Reparatieopdrachten\Create.cshtml" />
     <Content Include="Views\Reparatieopdrachten\Delete.cshtml" />
     <Content Include="Views\Reparatieopdrachten\Details.cshtml" />
     <Content Include="Views\Reparatieopdrachten\Edit.cshtml" />
     <Content Include="Views\Reparatieopdrachten\Index.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Enum.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -282,8 +280,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202010021115360_init.resx">
-      <DependentUpon>202010021115360_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202010021130142_init.resx">
+      <DependentUpon>202010021130142_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

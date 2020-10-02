@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using Computer_Reparatieshop.DAL;
@@ -18,7 +20,7 @@ namespace Computer_Reparatieshop.Controllers
         // GET: Reparatieopdrachten
         public ActionResult Index()
         {
-
+            
             //ViewBag.Message = "tabel met info";
             ViewBag.Message2 = "test";
             ViewBag.pending = "test1";
@@ -56,6 +58,7 @@ namespace Computer_Reparatieshop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [DefaultValue(typeof(Status), "1")]
         public ActionResult Create([Bind(Include = "Id,Name,Startdate,Enddate,Status")] Reparatieopdrachten reparatieopdrachten)
         {
             if (ModelState.IsValid)

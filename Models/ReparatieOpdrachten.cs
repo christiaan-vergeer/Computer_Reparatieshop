@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 
@@ -10,6 +11,7 @@ namespace Computer_Reparatieshop.Models
     public class Reparatieopdrachten
     {
         public int Id { get; set; }
+        [Required]
         public string Name { get; set; }
 
         [DataType(DataType.Date)]
@@ -19,18 +21,20 @@ namespace Computer_Reparatieshop.Models
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime Enddate { get; set; }
-
-        public Status Status  { get;set; }
-
+        public Status Status { get; set; }
 
     }
 
     public enum Status
     {
         Pending,
-        Underway,
-        [Display(Name = "Wating for parts")]
+        [Display(Name = "In Progress")]
+        InProgress,
+        [Display(Name = "Waiting for parts")]
         WaitingForParts,
         Done
-    } 
+    }
+    
+
+
 }

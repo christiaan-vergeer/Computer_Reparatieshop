@@ -9,9 +9,10 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<p>
-    in afwachting = @ViewBag.pending | in behandeling = @ViewBag.underway | wachten op onderdelen = @ViewBag.waitingforpart | klaar = @ViewBag.done
-</p>
+<div class="panel panel-primary">
+    <div class="panel-heading text-center">
+      in afwachting = @ViewBag.pending | in behandeling = @ViewBag.underway | wachten op onderdelen = @ViewBag.waitingforpart | klaar = @ViewBag.done
+    </div></div> 
 
 <table class="table">
     <tr>
@@ -42,7 +43,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Enddate)
             </td>
-            <td>
+            <td>            
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
