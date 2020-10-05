@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Computer_Reparatieshop.Models.Reparatieopdrachten>
+﻿@model IEnumerable<Computer_Reparatieshop.Models.Reparatieopdracht>
 
 @{
     ViewBag.Title = "Index";
@@ -32,6 +32,10 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Status)*@
+            klanten
         </th>
         <th></th>
     </tr>
@@ -68,25 +72,28 @@
         }
 
 
-        <tr style=@backgroundClass>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Startdate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Enddate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.ActionLink("Pas Aan", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Verwijder", "Delete", new { id = item.Id })
-            </td>
-        </tr>
+<tr style=@backgroundClass>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Startdate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Enddate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Status)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Klanten.Firstname)
+    </td>
+    <td>
+        @Html.ActionLink("Pas Aan", "Edit", new { id = item.Id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+        @Html.ActionLink("Verwijder", "Delete", new { id = item.Id })
+    </td>
+</tr>
     }
 
 </table>

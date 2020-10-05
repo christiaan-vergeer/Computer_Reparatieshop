@@ -1,4 +1,4 @@
-﻿@model Computer_Reparatieshop.Models.Reparatieopdrachten
+﻿@model Computer_Reparatieshop.Models.Reparatieopdracht
 
 @{
     ViewBag.Title = "Aanpassen reparatieopdracht";
@@ -16,7 +16,11 @@
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.Id)
-
+    <style>
+        textarea {
+            resize: none;
+        }
+    </style>
     <div class="form-group">
         @Html.LabelFor(model => model.Name, "Naam reparatie", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -54,8 +58,8 @@
     <div class="form-group">
         @Html.LabelFor(model => model.details, "Details reparatie", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.TextAreaFor(model => model.details, new { cols = "50", rows = "15", @draggable = "false", @minlength = "15" })
-           @Html.ValidationMessageFor(model => model.details, "", new { @class = "text-danger" })
+            @Html.TextAreaFor(model => model.details, new { cols = "50", rows = "15", @draggable = "false", @minlength = "15", @resize = "none" })
+            @Html.ValidationMessageFor(model => model.details, "", new { @class = "text-danger" })
         </div>
     </div>
 

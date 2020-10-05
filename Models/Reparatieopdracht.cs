@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace Computer_Reparatieshop.Models
 {
-    public class Reparatieopdrachten
+    public class Reparatieopdracht
     {
         public int Id { get; set; }
         [Required]
@@ -22,9 +22,11 @@ namespace Computer_Reparatieshop.Models
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime Enddate { get; set; }
-        public string details { get; set; } 
+        public string Details { get; set; } 
 
         public Status Status { get; set; }
+
+        public virtual Klant Klant { get; set; }
 
     }
 

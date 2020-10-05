@@ -15,7 +15,8 @@ namespace Computer_Reparatieshop.DAL
 
         }
 
-        public DbSet<Reparatieopdrachten>reparatieopdrachtens { get; set; }
+        public DbSet<Reparatieopdracht>reparatieopdrachtens { get; set; }
+        public DbSet<Klant> klantens { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

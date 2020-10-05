@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using Computer_Reparatieshop.DAL;
 using Computer_Reparatieshop.Models;
+using Computer_Reparatieshop.ViewModels;
 
 namespace Computer_Reparatieshop.Controllers
 {
@@ -55,7 +56,7 @@ namespace Computer_Reparatieshop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reparatieopdrachten reparatieopdrachten = db.reparatieopdrachtens.Find(id);
+            Reparatieopdracht reparatieopdrachten = db.reparatieopdrachtens.Find(id);
             if (reparatieopdrachten == null)
             {
                 return HttpNotFound();
@@ -66,7 +67,12 @@ namespace Computer_Reparatieshop.Controllers
         // GET: Reparatieopdrachten/Create
         public ActionResult Create()
         {
-            return View();
+            var CreateReparatieViewModel = new CreateRepairViewModel
+            {
+                Reparatieopdracht = new Reparatieopdracht(),
+                Klanten = db.klantens.ToList()
+            };
+            return View(CreateReparatieViewModel);
         }
 
         // POST: Reparatieopdrachten/Create
@@ -75,17 +81,20 @@ namespace Computer_Reparatieshop.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [DefaultValue(typeof(Status), "1")]
-        public ActionResult Create([Bind(Include = "Id,Name,Startdate,Enddate,Status,details")] Reparatieopdrachten reparatieopdrachten)
+        public ActionResult Create([Bind(Include = "Reparatieopdracht, KlantId")] CreateRepairViewModel createRepairViewModel)
         {
             if (ModelState.IsValid)
             {
-                db.reparatieopdrachtens.Add(reparatieopdrachten);
+                var reparatieopdracht = createRepairViewModel.Reparatieopdracht;
+                reparatieopdracht.Klant = db.klantens.Find(createRepairViewModel.KlantId);
+                db.reparatieopdrachtens.Add(reparatieopdracht);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(reparatieopdrachten);
+            return View(createRepairViewModel);
         }
+        //[Bind(Include = "Id,Name,Startdate,Enddate,Status,Details")]
 
         // GET: Reparatieopdrachten/Edit/5
         public ActionResult Edit(int? id)
@@ -94,7 +103,7 @@ namespace Computer_Reparatieshop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reparatieopdrachten reparatieopdrachten = db.reparatieopdrachtens.Find(id);
+            Reparatieopdracht reparatieopdrachten = db.reparatieopdrachtens.Find(id);
             if (reparatieopdrachten == null)
             {
                 return HttpNotFound();
@@ -107,7 +116,7 @@ namespace Computer_Reparatieshop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Startdate,Enddate,Status,details")] Reparatieopdrachten reparatieopdrachten)
+        public ActionResult Edit([Bind(Include = "Id,Name,Startdate,Enddate,Status,Details")] Reparatieopdracht reparatieopdrachten)
         {
             if (ModelState.IsValid)
             {
@@ -125,7 +134,7 @@ namespace Computer_Reparatieshop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reparatieopdrachten reparatieopdrachten = db.reparatieopdrachtens.Find(id);
+            Reparatieopdracht reparatieopdrachten = db.reparatieopdrachtens.Find(id);
             if (reparatieopdrachten == null)
             {
                 return HttpNotFound();
@@ -138,7 +147,7 @@ namespace Computer_Reparatieshop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Reparatieopdrachten reparatieopdrachten = db.reparatieopdrachtens.Find(id);
+            Reparatieopdracht reparatieopdrachten = db.reparatieopdrachtens.Find(id);
             db.reparatieopdrachtens.Remove(reparatieopdrachten);
             db.SaveChanges();
             return RedirectToAction("Index");

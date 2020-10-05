@@ -179,6 +179,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KlantenController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ReparatieopdrachtenController.cs" />
     <Compile Include="DAL\ReparatieContext.cs" />
@@ -192,11 +193,13 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ReparatieOpdrachten.cs" />
+    <Compile Include="Models\Klant.cs" />
+    <Compile Include="Models\Reparatieopdracht.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\CreateRepairViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -260,6 +263,11 @@
     <Content Include="Views\Reparatieopdrachten\Edit.cshtml" />
     <Content Include="Views\Reparatieopdrachten\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Enum.cshtml" />
+    <Content Include="Views\Klanten\Create.cshtml" />
+    <Content Include="Views\Klanten\Delete.cshtml" />
+    <Content Include="Views\Klanten\Details.cshtml" />
+    <Content Include="Views\Klanten\Edit.cshtml" />
+    <Content Include="Views\Klanten\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
