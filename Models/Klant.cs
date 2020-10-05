@@ -11,6 +11,7 @@ namespace Computer_Reparatieshop.Models
         public string Firstname {get; set;}
         public string Middlename { get; set; }
         public string Lastname { get; set; }
+        public string Fullname { get; set; }
         public string Phonenumber { get; set; }
         public string Adress { get; set; }
         public string City { get; set; }

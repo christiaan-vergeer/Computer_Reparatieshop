@@ -47,7 +47,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Reparatieopdracht.Details, "Details reparatie", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.TextAreaFor(model => model.Reparatieopdracht.Details, new { cols = "50", rows = "15", @draggable = "false", @minlength = "15", @resize = "none" })
+            @Html.TextAreaFor(model => model.Reparatieopdracht.Details, new { cols = "50", rows = "15", @draggable = "false", @resize = "none" })
             @Html.ValidationMessageFor(model => model.Reparatieopdracht.Details, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -55,7 +55,8 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Reparatieopdracht.Klant, "Klant", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownListFor(model => model.KlantId, new SelectList(Model.Klanten,"Id", "Firstname" ), new { htmlAttributes = new { @class = "form-control" } })
+       
+            @Html.DropDownListFor(model => model.KlantId, new SelectList(Model.Klanten,"Id", "Fullname"), new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.KlantId, "", new { @class = "text-danger" })
         </div>
     </div>

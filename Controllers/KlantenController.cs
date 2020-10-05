@@ -51,6 +51,7 @@ namespace Computer_Reparatieshop.Controllers
         {
             if (ModelState.IsValid)
             {
+                klanten.Fullname = klanten.Firstname + " " + klanten.Middlename + " " +  klanten.Lastname;
                 db.klantens.Add(klanten);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -83,6 +84,7 @@ namespace Computer_Reparatieshop.Controllers
         {
             if (ModelState.IsValid)
             {
+                klanten.Fullname = klanten.Firstname + " " + klanten.Middlename + " " + klanten.Lastname;
                 db.Entry(klanten).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

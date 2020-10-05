@@ -56,12 +56,12 @@ namespace Computer_Reparatieshop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reparatieopdracht reparatieopdrachten = db.reparatieopdrachtens.Find(id);
-            if (reparatieopdrachten == null)
+            var CreateReparatieViewModel = new CreateRepairViewModel
             {
-                return HttpNotFound();
-            }
-            return View(reparatieopdrachten);
+                Reparatieopdracht = db.reparatieopdrachtens.Find(id),
+                Klanten = db.klantens.ToList()
+            };
+            return View(CreateReparatieViewModel);
         }
 
         // GET: Reparatieopdrachten/Create
@@ -69,7 +69,11 @@ namespace Computer_Reparatieshop.Controllers
         {
             var CreateReparatieViewModel = new CreateRepairViewModel
             {
-                Reparatieopdracht = new Reparatieopdracht(),
+                Reparatieopdracht = new Reparatieopdracht 
+                {
+                    Startdate = DateTime.Now,
+                    Enddate = DateTime.Now
+                },
                 Klanten = db.klantens.ToList()
             };
             return View(CreateReparatieViewModel);
@@ -103,12 +107,22 @@ namespace Computer_Reparatieshop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reparatieopdracht reparatieopdrachten = db.reparatieopdrachtens.Find(id);
-            if (reparatieopdrachten == null)
+
+
+            //Reparatieopdracht reparatieopdrachten = db.reparatieopdrachtens.Find(id);
+            //if (reparatieopdrachten == null)
+            //{
+            //    return HttpNotFound();
+            //}
+
+            var CreateReparatieViewModel = new CreateRepairViewModel
             {
-                return HttpNotFound();
-            }
-            return View(reparatieopdrachten);
+                Reparatieopdracht = db.reparatieopdrachtens.Include(r => r.Klant).FirstOrDefault(r => r.Id == id),
+                Klanten = db.klantens.ToList()
+            };
+            CreateReparatieViewModel.KlantId = CreateReparatieViewModel.Reparatieopdracht.Klant.Id;
+
+            return View(CreateReparatieViewModel);
         }
 
         // POST: Reparatieopdrachten/Edit/5
@@ -116,15 +130,30 @@ namespace Computer_Reparatieshop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Startdate,Enddate,Status,Details")] Reparatieopdracht reparatieopdrachten)
+        public ActionResult Edit([Bind(Include = "Reparatieopdracht, KlantId")] CreateRepairViewModel createRepairViewModel)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(reparatieopdrachten).State = EntityState.Modified;
+                //var rearatieOpdracht = createRepairViewModel.Reparatieopdracht;
+                //reparatieopdracht.Klant = db.klantens.Find(createRepairViewModel.KlantId);
+
+                //db.Entry(reparatieopdracht.Klant).State = EntityState.Modified;
+
+                var rearatieOpdracht = db.reparatieopdrachtens.Include(r => r.Klant).FirstOrDefault(r => r.Id == createRepairViewModel.Reparatieopdracht.Id);
+
+                rearatieOpdracht.Name = createRepairViewModel.Reparatieopdracht.Name;
+                rearatieOpdracht.Startdate = createRepairViewModel.Reparatieopdracht.Startdate;
+                rearatieOpdracht.Enddate = createRepairViewModel.Reparatieopdracht.Enddate;
+                rearatieOpdracht.Details = createRepairViewModel.Reparatieopdracht.Details;
+                rearatieOpdracht.Status = createRepairViewModel.Reparatieopdracht.Status;
+                rearatieOpdracht.Klant = db.klantens.FirstOrDefault(k => k.Id == createRepairViewModel.KlantId);
+
+                db.Entry(rearatieOpdracht).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(reparatieopdrachten);
+
+            return View(createRepairViewModel);
         }
 
         // GET: Reparatieopdrachten/Delete/5
@@ -134,12 +163,12 @@ namespace Computer_Reparatieshop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reparatieopdracht reparatieopdrachten = db.reparatieopdrachtens.Find(id);
-            if (reparatieopdrachten == null)
+            var CreateReparatieViewModel = new CreateRepairViewModel
             {
-                return HttpNotFound();
-            }
-            return View(reparatieopdrachten);
+                Reparatieopdracht = db.reparatieopdrachtens.Find(id),
+                Klanten = db.klantens.ToList()
+            };
+            return View(CreateReparatieViewModel);
         }
 
         // POST: Reparatieopdrachten/Delete/5
