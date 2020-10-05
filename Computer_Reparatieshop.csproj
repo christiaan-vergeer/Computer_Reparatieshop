@@ -186,13 +186,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202010021130142_init.cs" />
-    <Compile Include="Migrations\202010021130142_init.designer.cs">
-      <DependentUpon>202010021130142_init.cs</DependentUpon>
+    <Compile Include="Migrations\202010050823520_test.cs" />
+    <Compile Include="Migrations\202010050823520_test.designer.cs">
+      <DependentUpon>202010050823520_test.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\newOpdrachtViewModel.cs" />
     <Compile Include="Models\ReparatieOpdrachten.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -280,8 +279,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202010021130142_init.resx">
-      <DependentUpon>202010021130142_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202010050823520_test.resx">
+      <DependentUpon>202010050823520_test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

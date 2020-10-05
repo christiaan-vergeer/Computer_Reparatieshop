@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 namespace Computer_Reparatieshop.Models
 {
@@ -21,6 +22,8 @@ namespace Computer_Reparatieshop.Models
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime Enddate { get; set; }
+        public string details { get; set; } 
+
         public Status Status { get; set; }
 
     }

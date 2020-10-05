@@ -75,7 +75,7 @@ namespace Computer_Reparatieshop.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [DefaultValue(typeof(Status), "1")]
-        public ActionResult Create([Bind(Include = "Id,Name,Startdate,Enddate,Status")] Reparatieopdrachten reparatieopdrachten)
+        public ActionResult Create([Bind(Include = "Id,Name,Startdate,Enddate,Status,details")] Reparatieopdrachten reparatieopdrachten)
         {
             if (ModelState.IsValid)
             {
@@ -107,7 +107,7 @@ namespace Computer_Reparatieshop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Startdate,Enddate,Status")] Reparatieopdrachten reparatieopdrachten)
+        public ActionResult Edit([Bind(Include = "Id,Name,Startdate,Enddate,Status,details")] Reparatieopdrachten reparatieopdrachten)
         {
             if (ModelState.IsValid)
             {

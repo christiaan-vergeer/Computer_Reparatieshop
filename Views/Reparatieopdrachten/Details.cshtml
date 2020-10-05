@@ -11,7 +11,8 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @*@Html.DisplayNameFor(model => model.Name)*@
+            Naam
         </dt>
 
         <dd>
@@ -19,7 +20,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Startdate)
+            @*@Html.DisplayNameFor(model => model.Startdate)*@
+            Startdatum
         </dt>
 
         <dd>
@@ -27,7 +29,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Enddate)
+            @*@Html.DisplayNameFor(model => model.Enddate)*@
+            Einddatum
         </dt>
 
         <dd>
@@ -35,16 +38,27 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Status)
+            @*@Html.DisplayNameFor(model => model.Status)*@
+            Status
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Status)
         </dd>
 
+        <dt>
+            @*@Html.DisplayNameFor(model => model.Status)*@
+            detais
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.details)
+        </dd>
+
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Pas aan", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Terug naar reparatieopdrachten", "Index")
 </p>
