@@ -12,7 +12,7 @@ namespace Computer_Reparatieshop.Models
         public int Amount { get; set; }
         public double Price { get; set; }
         public vendor Vendor { get; set; }
-        public virtual Reparatieopdracht Reparatieopdracht { get; set; }
+        public virtual ICollection<Reparatieopdracht> Reparatieopdracht { get; set; }
     }
 
     public enum vendor

@@ -204,6 +204,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CreateRepairViewModel.cs" />
+    <Compile Include="ViewModels\OnderdelenReparatieViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -282,6 +283,7 @@
     <Content Include="Views\ComputerPart\Details.cshtml" />
     <Content Include="Views\ComputerPart\Edit.cshtml" />
     <Content Include="Views\ComputerPart\Index.cshtml" />
+    <Content Include="Views\Reparatieopdrachten\Onderdelen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

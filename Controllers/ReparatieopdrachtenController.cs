@@ -186,6 +186,68 @@ namespace Computer_Reparatieshop.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: Reparatieopdrachten/Edit/5
+        public ActionResult Onderdelen(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+
+            //Reparatieopdracht reparatieopdrachten = db.reparatieopdrachtens.Find(id);
+            //if (reparatieopdrachten == null)
+            //{
+            //    return HttpNotFound();
+            //}
+
+            var OnderdelenReparatieViewModel = new OnderdelenReparatieViewModel
+            {
+                computerParts = db.ComputerParts.ToList()
+            };
+            return View(OnderdelenReparatieViewModel);
+        }
+
+        // POST: Reparatieopdrachten/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Onderdelen([Bind(Include = "Reparatieopdracht, KlantId, ReparateurId")] CreateRepairViewModel createRepairViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                //var rearatieOpdracht = createRepairViewModel.Reparatieopdracht;
+                //reparatieopdracht.Klant = db.klantens.Find(createRepairViewModel.KlantId);
+
+                //db.Entry(reparatieopdracht.Klant).State = EntityState.Modified;
+
+                var reparatieOpdracht = db.reparatieopdrachtens.Include(r => r.Klant).Include(r => r.Reparateur).FirstOrDefault(r => r.Id == createRepairViewModel.Reparatieopdracht.Id);
+
+                reparatieOpdracht.Name = createRepairViewModel.Reparatieopdracht.Name;
+                reparatieOpdracht.Startdate = createRepairViewModel.Reparatieopdracht.Startdate;
+                reparatieOpdracht.Enddate = createRepairViewModel.Reparatieopdracht.Enddate;
+                reparatieOpdracht.Details = createRepairViewModel.Reparatieopdracht.Details;
+                reparatieOpdracht.Status = createRepairViewModel.Reparatieopdracht.Status;
+                reparatieOpdracht.Klant = db.klantens.FirstOrDefault(k => k.Id == createRepairViewModel.KlantId);
+                reparatieOpdracht.Reparateur = db.Reparateurs.FirstOrDefault(k => k.Id == createRepairViewModel.ReparateurId);
+
+                db.Entry(reparatieOpdracht).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(createRepairViewModel);
+        }
+
+
+
+
+
+
+
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
