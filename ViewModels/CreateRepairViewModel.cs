@@ -11,5 +11,8 @@ namespace Computer_Reparatieshop.ViewModels
         public Reparatieopdracht Reparatieopdracht { get; set; }
         public List<Klant> Klanten { get; set; }
         public int KlantId { get; set; }
+
+        public List<Reparateur> reparateurs { get; set; }
+        public int ReparateurId { get; set; }
     }
 }

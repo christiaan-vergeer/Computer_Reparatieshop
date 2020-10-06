@@ -35,7 +35,11 @@
         </th>
         <th>
             @*@Html.DisplayNameFor(model => model.Status)*@
-            klanten
+            Klant
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Status)*@
+            Reparateur
         </th>
         <th></th>
     </tr>
@@ -87,6 +91,9 @@
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.Klant.Fullname)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Reparateur.FullName)
     </td>
     <td>
         @Html.ActionLink("Pas Aan", "Edit", new { id = item.Id }) |

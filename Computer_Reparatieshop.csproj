@@ -181,19 +181,21 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KlantenController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ReparateurController.cs" />
     <Compile Include="Controllers\ReparatieopdrachtenController.cs" />
     <Compile Include="DAL\ReparatieContext.cs" />
     <Compile Include="DAL\ReparatieInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202010050823520_test.cs" />
-    <Compile Include="Migrations\202010050823520_test.designer.cs">
-      <DependentUpon>202010050823520_test.cs</DependentUpon>
+    <Compile Include="Migrations\202010060835588_init.cs" />
+    <Compile Include="Migrations\202010060835588_init.designer.cs">
+      <DependentUpon>202010060835588_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Klant.cs" />
+    <Compile Include="Models\Reparateur.cs" />
     <Compile Include="Models\Reparatieopdracht.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -268,6 +270,11 @@
     <Content Include="Views\Klanten\Details.cshtml" />
     <Content Include="Views\Klanten\Edit.cshtml" />
     <Content Include="Views\Klanten\Index.cshtml" />
+    <Content Include="Views\Reparateur\Create.cshtml" />
+    <Content Include="Views\Reparateur\Delete.cshtml" />
+    <Content Include="Views\Reparateur\Details.cshtml" />
+    <Content Include="Views\Reparateur\Edit.cshtml" />
+    <Content Include="Views\Reparateur\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -287,8 +294,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202010050823520_test.resx">
-      <DependentUpon>202010050823520_test.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202010060835588_init.resx">
+      <DependentUpon>202010060835588_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

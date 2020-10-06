@@ -28,6 +28,8 @@ namespace Computer_Reparatieshop.Models
 
         public virtual Klant Klant { get; set; }
 
+        public virtual Reparateur Reparateur { get; set; }
+
     }
 
     public enum Status

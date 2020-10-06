@@ -48,8 +48,27 @@
 
         <dt>
             @*@Html.DisplayNameFor(model => model.Status)*@
-            detais
+            Klant
         </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Reparatieopdracht.Klant.Fullname)
+        </dd>
+        <dt>
+            @*@Html.DisplayNameFor(model => model.Status)*@
+            Reparateur
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Reparatieopdracht.Reparateur.FullName)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.Status)*@
+            Details
+        </dt>
+
+
 
         <dd>
             @Html.DisplayFor(model => model.Reparatieopdracht.Details)

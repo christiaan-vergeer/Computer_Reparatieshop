@@ -74,7 +74,8 @@ namespace Computer_Reparatieshop.Controllers
                     Startdate = DateTime.Now,
                     Enddate = DateTime.Now
                 },
-                Klanten = db.klantens.ToList()
+                Klanten = db.klantens.ToList(),
+                reparateurs = db.Reparateurs.ToList()
             };
             return View(CreateReparatieViewModel);
         }
@@ -85,12 +86,13 @@ namespace Computer_Reparatieshop.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [DefaultValue(typeof(Status), "1")]
-        public ActionResult Create([Bind(Include = "Reparatieopdracht, KlantId")] CreateRepairViewModel createRepairViewModel)
+        public ActionResult Create([Bind(Include = "Reparatieopdracht, KlantId, ReparateurId")] CreateRepairViewModel createRepairViewModel)
         {
             if (ModelState.IsValid)
             {
                 var reparatieopdracht = createRepairViewModel.Reparatieopdracht;
                 reparatieopdracht.Klant = db.klantens.Find(createRepairViewModel.KlantId);
+                reparatieopdracht.Reparateur = db.Reparateurs.Find(createRepairViewModel.ReparateurId);
                 db.reparatieopdrachtens.Add(reparatieopdracht);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -117,11 +119,12 @@ namespace Computer_Reparatieshop.Controllers
 
             var CreateReparatieViewModel = new CreateRepairViewModel
             {
-                Reparatieopdracht = db.reparatieopdrachtens.Include(r => r.Klant).FirstOrDefault(r => r.Id == id),
-                Klanten = db.klantens.ToList()
+                Reparatieopdracht = db.reparatieopdrachtens.Include(r => r.Klant).Include(r => r.Reparateur).FirstOrDefault(r => r.Id == id),
+                Klanten = db.klantens.ToList(),
+                reparateurs = db.Reparateurs.ToList()
             };
             CreateReparatieViewModel.KlantId = CreateReparatieViewModel.Reparatieopdracht.Klant.Id;
-
+            CreateReparatieViewModel.ReparateurId = CreateReparatieViewModel.Reparatieopdracht.Reparateur.Id;
             return View(CreateReparatieViewModel);
         }
 
@@ -130,7 +133,7 @@ namespace Computer_Reparatieshop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Reparatieopdracht, KlantId")] CreateRepairViewModel createRepairViewModel)
+        public ActionResult Edit([Bind(Include = "Reparatieopdracht, KlantId, ReparateurId")] CreateRepairViewModel createRepairViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -139,16 +142,17 @@ namespace Computer_Reparatieshop.Controllers
 
                 //db.Entry(reparatieopdracht.Klant).State = EntityState.Modified;
 
-                var rearatieOpdracht = db.reparatieopdrachtens.Include(r => r.Klant).FirstOrDefault(r => r.Id == createRepairViewModel.Reparatieopdracht.Id);
+                var reparatieOpdracht = db.reparatieopdrachtens.Include(r => r.Klant).Include(r => r.Reparateur).FirstOrDefault(r => r.Id == createRepairViewModel.Reparatieopdracht.Id);
 
-                rearatieOpdracht.Name = createRepairViewModel.Reparatieopdracht.Name;
-                rearatieOpdracht.Startdate = createRepairViewModel.Reparatieopdracht.Startdate;
-                rearatieOpdracht.Enddate = createRepairViewModel.Reparatieopdracht.Enddate;
-                rearatieOpdracht.Details = createRepairViewModel.Reparatieopdracht.Details;
-                rearatieOpdracht.Status = createRepairViewModel.Reparatieopdracht.Status;
-                rearatieOpdracht.Klant = db.klantens.FirstOrDefault(k => k.Id == createRepairViewModel.KlantId);
+                reparatieOpdracht.Name = createRepairViewModel.Reparatieopdracht.Name;
+                reparatieOpdracht.Startdate = createRepairViewModel.Reparatieopdracht.Startdate;
+                reparatieOpdracht.Enddate = createRepairViewModel.Reparatieopdracht.Enddate;
+                reparatieOpdracht.Details = createRepairViewModel.Reparatieopdracht.Details;
+                reparatieOpdracht.Status = createRepairViewModel.Reparatieopdracht.Status;
+                reparatieOpdracht.Klant = db.klantens.FirstOrDefault(k => k.Id == createRepairViewModel.KlantId);
+                reparatieOpdracht.Reparateur = db.Reparateurs.FirstOrDefault(k => k.Id == createRepairViewModel.ReparateurId);
 
-                db.Entry(rearatieOpdracht).State = EntityState.Modified;
+                db.Entry(reparatieOpdracht).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
