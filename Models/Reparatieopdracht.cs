@@ -30,6 +30,8 @@ namespace Computer_Reparatieshop.Models
 
         public virtual Reparateur Reparateur { get; set; }
 
+        public virtual ICollection<ComputerPart> ComputerParts { get; set; }
+
     }
 
     public enum Status

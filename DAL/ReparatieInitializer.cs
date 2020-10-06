@@ -35,6 +35,18 @@ namespace Computer_Reparatieshop.DAL
             reparateurs.ForEach(s => context.Reparateurs.Add(s));
             context.SaveChanges();
 
+            var computerpart = new List<ComputerPart>
+            {
+                new ComputerPart{ Name="Intel Processor 1", Price=199, Vendor=vendor.Intel, Amount=5},
+                new ComputerPart{ Name="AMD Processor 2", Price=299, Vendor=vendor.AMD, Amount=4},
+                new ComputerPart{ Name="Intel Processor 3", Price=399, Vendor=vendor.Intel, Amount=3},
+                new ComputerPart{ Name="Gygabyte Processor 4", Price=499, Vendor=vendor.Gigabyte, Amount=2},
+                new ComputerPart{ Name="IBM Processor 5", Price=599, Vendor=vendor.IBM, Amount=1},
+            };
+
+            computerpart.ForEach(s => context.ComputerParts.Add(s));
+            context.SaveChanges();
+
             var reparaties = new List<Reparatieopdracht>
             {
                 new Reparatieopdracht{Name="vervangen computerscherm", Startdate = DateTime.Parse("2020-10-02"), Enddate = DateTime.Parse("2020-10-22"), Klant = klantens.FirstOrDefault(r => r.Id == 1) , Reparateur=reparateurs.FirstOrDefault(r =>r.Id==1), Details = "zit een barst in het beeldscherm, verder geen schade", Status = Status.Pending},

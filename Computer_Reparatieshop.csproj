@@ -178,6 +178,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ComputerPartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KlantenController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -194,6 +195,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ComputerPart.cs" />
     <Compile Include="Models\Klant.cs" />
     <Compile Include="Models\Reparateur.cs" />
     <Compile Include="Models\Reparatieopdracht.cs" />
@@ -275,6 +277,11 @@
     <Content Include="Views\Reparateur\Details.cshtml" />
     <Content Include="Views\Reparateur\Edit.cshtml" />
     <Content Include="Views\Reparateur\Index.cshtml" />
+    <Content Include="Views\ComputerPart\Create.cshtml" />
+    <Content Include="Views\ComputerPart\Delete.cshtml" />
+    <Content Include="Views\ComputerPart\Details.cshtml" />
+    <Content Include="Views\ComputerPart\Edit.cshtml" />
+    <Content Include="Views\ComputerPart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
