@@ -10,7 +10,7 @@
     <h4>Klanten</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Firstname)
         </dt>
 
@@ -24,18 +24,20 @@
 
         <dd>
             @Html.DisplayFor(model => model.Middlename)
-        </dd>
+        </dd>*@
 
         <dt>
-            @Html.DisplayNameFor(model => model.Lastname)
+            @*@Html.DisplayNameFor(model => model.Lastname)*@
+            Naam
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Lastname)
+            @Html.DisplayFor(model => model.Fullname)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Phonenumber)
+            @*@Html.DisplayNameFor(model => model.Phonenumber)*@
+            Telefoonnummer
         </dt>
 
         <dd>
@@ -43,7 +45,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Adress)
+            @*@Html.DisplayNameFor(model => model.Adress)*@
+            Adress
         </dt>
 
         <dd>
@@ -51,7 +54,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.City)
+            @*@Html.DisplayNameFor(model => model.City)*@
+            Stad
         </dt>
 
         <dd>
@@ -61,6 +65,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Pas Aan", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Terug naar lijst", "Index")
 </p>

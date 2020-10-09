@@ -10,30 +10,41 @@
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>Reparatieopdracht</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.reparatieopdracht.Id)
+<div class="form-horizontal">
+    <h4>Reparatieopdracht</h4>
+    <hr />
+    @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+    @Html.HiddenFor(model => model.RO.Id)
+    @Html.HiddenFor(model => model.RO.Klant)
+    @Html.HiddenFor(model => model.RO.Name)
+    @Html.HiddenFor(model => model.RO.Reparateur)
+    @Html.HiddenFor(model => model.RO.Startdate)
+    @Html.HiddenFor(model => model.RO.Status)
+    @Html.HiddenFor(model => model.RO.Enddate)
+    @Html.HiddenFor(model => model.RO.Details)
+    @Html.HiddenFor(model => model.RO.ComputerParts)
 
     <table class="table">
-        @foreach (var item in Model.computerParts)
+        @foreach (var item in Model.CB)
         {
 
             <tr>
                 <td> @Html.DisplayFor(modelItem => item.Name)</td>
-            </tr>
-            <tr>
-                @*<td> @Html.CheckBoxFor(modelItem => item.Id)</td>*@
+                @*<td> <input type="checkbox" value="@Html.DisplayFor(modelItem => item.Id)" /></td>*@
+                <td>
+                    @Html.CheckBoxFor(m => item.IsChecked)
+                </td>
+
+
             </tr>
         }
     </table>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
         </div>
     </div>
+</div>
 }
 
 <div>

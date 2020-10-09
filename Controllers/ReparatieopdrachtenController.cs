@@ -8,6 +8,8 @@ using System.Net;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 using Computer_Reparatieshop.DAL;
 using Computer_Reparatieshop.Models;
 using Computer_Reparatieshop.ViewModels;
@@ -186,7 +188,7 @@ namespace Computer_Reparatieshop.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Reparatieopdrachten/Edit/5
+        // GET: Reparatieopdrachten/Onderdelen/5
         public ActionResult Onderdelen(int? id)
         {
             if (id == null)
@@ -200,20 +202,36 @@ namespace Computer_Reparatieshop.Controllers
             //{
             //    return HttpNotFound();
             //}
+            List<PartcheckboxViewmodel> pcv = new List<PartcheckboxViewmodel>();
+            foreach (var part in db.ComputerParts.ToList())
+            {
+                pcv.Add(new PartcheckboxViewmodel 
+                { 
+                    Amount = part.Amount,
+                    Id = part.Id,
+                    Name = part.Name,
+                    Price = part.Price,
+                    Vendor = part.Vendor,
+                    Reparatieopdracht = part.Reparatieopdracht
+                });
+            }
+
 
             var OnderdelenReparatieViewModel = new OnderdelenReparatieViewModel
             {
-                computerParts = db.ComputerParts.ToList()
+                CB = pcv, /*db.ComputerParts.ToList()*/
+                RO = db.reparatieopdrachtens.Include(r => r.Klant).Include(r => r.Reparateur).FirstOrDefault(r => r.Id == id)
             };
+
             return View(OnderdelenReparatieViewModel);
         }
 
-        // POST: Reparatieopdrachten/Edit/5
+        // POST: Reparatieopdrachten/Onderdelen/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Onderdelen([Bind(Include = "Reparatieopdracht, KlantId, ReparateurId")] CreateRepairViewModel createRepairViewModel)
+        public ActionResult Onderdelen([Bind(Include = "RO, CP, CB, Name")] OnderdelenReparatieViewModel onderdelenReparatieViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -222,22 +240,29 @@ namespace Computer_Reparatieshop.Controllers
 
                 //db.Entry(reparatieopdracht.Klant).State = EntityState.Modified;
 
-                var reparatieOpdracht = db.reparatieopdrachtens.Include(r => r.Klant).Include(r => r.Reparateur).FirstOrDefault(r => r.Id == createRepairViewModel.Reparatieopdracht.Id);
+                var reparatieOpdracht = db.reparatieopdrachtens.FirstOrDefault(r => r.Id == onderdelenReparatieViewModel.RO.Id);
+                //reparatieOpdracht.Name = createRepairViewModel.Reparatieopdracht.Name;
+                //reparatieOpdracht.Startdate = createRepairViewModel.Reparatieopdracht.Startdate;
+                //reparatieOpdracht.Enddate = createRepairViewModel.Reparatieopdracht.Enddate;
+                //reparatieOpdracht.Details = createRepairViewModel.Reparatieopdracht.Details;
+                //reparatieOpdracht.Status = createRepairViewModel.Reparatieopdracht.Status;
+                //reparatieOpdracht.Klant = db.klantens.FirstOrDefault(k => k.Id == createRepairViewModel.KlantId);
+                //reparatieOpdracht.Reparateur = db.Reparateurs.FirstOrDefault(k => k.Id == createRepairViewModel.ReparateurId);
+                reparatieOpdracht.ComputerParts.Clear();
+                for (var i= 1; i < db.ComputerParts.Count(); i++)
+                {
+                    //if (CheckBox(i)==true) {
+                    //    reparatieOpdracht.ComputerParts.Add(db.ComputerParts.FirstOrDefault(r => r.Id==i));
+                    //}
+                }
 
-                reparatieOpdracht.Name = createRepairViewModel.Reparatieopdracht.Name;
-                reparatieOpdracht.Startdate = createRepairViewModel.Reparatieopdracht.Startdate;
-                reparatieOpdracht.Enddate = createRepairViewModel.Reparatieopdracht.Enddate;
-                reparatieOpdracht.Details = createRepairViewModel.Reparatieopdracht.Details;
-                reparatieOpdracht.Status = createRepairViewModel.Reparatieopdracht.Status;
-                reparatieOpdracht.Klant = db.klantens.FirstOrDefault(k => k.Id == createRepairViewModel.KlantId);
-                reparatieOpdracht.Reparateur = db.Reparateurs.FirstOrDefault(k => k.Id == createRepairViewModel.ReparateurId);
 
                 db.Entry(reparatieOpdracht).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(createRepairViewModel);
+            return View(onderdelenReparatieViewModel);
         }
 
 

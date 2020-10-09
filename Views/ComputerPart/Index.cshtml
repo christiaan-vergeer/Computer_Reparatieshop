@@ -4,24 +4,28 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Onderdelen in magazijn</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Voeg nieuw onderdeel toe", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @*@Html.DisplayNameFor(model => model.Name)*@
+            Naam
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Amount)
+            @*@Html.DisplayNameFor(model => model.Amount)*@
+            Hoeveelheid
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            @*@Html.DisplayNameFor(model => model.Price)*@
+            Prijs
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Vendor)
+            @*@Html.DisplayNameFor(model => model.Vendor)*@
+            Producent
         </th>
         <th></th>
     </tr>
@@ -41,9 +45,9 @@
             @Html.DisplayFor(modelItem => item.Vendor)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Pas aan", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Verwijder", "Delete", new { id=item.Id })
         </td>
     </tr>
 }
