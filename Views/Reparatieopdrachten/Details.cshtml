@@ -52,7 +52,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Reparatieopdracht.Klant.Fullname)
+            @Html.ActionLink(Model.Reparatieopdracht.Klant.Fullname, "Details", "Klanten", new { id = Model.Reparatieopdracht.Klant.Id }, null)
+            @*@Html.DisplayFor(model => model.Reparatieopdracht.Klant.Fullname)*@
         </dd>
         <dt>
             @*@Html.DisplayNameFor(model => model.Status)*@
@@ -60,7 +61,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Reparatieopdracht.Reparateur.FullName)
+            @Html.ActionLink(Model.Reparatieopdracht.Reparateur.FullName, "Details", "Reparateur", new { id = Model.Reparatieopdracht.Reparateur.Id }, null)
+            @*@Html.DisplayFor(model => model.Reparatieopdracht.Reparateur.FullName)*@
         </dd>
 
         <dt>

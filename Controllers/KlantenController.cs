@@ -113,7 +113,10 @@ namespace Computer_Reparatieshop.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Klant klanten = db.klantens.Find(id);
-            db.klantens.Remove(klanten);
+            klanten.isdeleted = true;
+
+            db.Entry(klanten).State = EntityState.Modified;
+            //db.klantens.Remove(klanten);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

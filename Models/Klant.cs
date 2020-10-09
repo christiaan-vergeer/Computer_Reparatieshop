@@ -15,6 +15,7 @@ namespace Computer_Reparatieshop.Models
         public string Phonenumber { get; set; }
         public string Adress { get; set; }
         public string City { get; set; }
+        public Boolean isdeleted { get; set; }
 
         public virtual ICollection<Reparatieopdracht> Reparatieopdrachtens { get; set; }
     }

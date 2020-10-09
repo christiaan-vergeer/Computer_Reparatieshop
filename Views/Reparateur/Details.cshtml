@@ -35,6 +35,18 @@
             @Html.DisplayFor(model => model.FullName)
         </dd>
 
+        <dt>
+            Opdrachten
+        </dt>
+
+        @foreach (var item in Model.Reparatieopdrachts)
+        {
+            <dd>
+                @Html.ActionLink(item.Name, "Details", "ReparatieOpdrachten", new { id = item.Id }, null)
+                @*@Html.DisplayFor(model => item.Name)*@
+            </dd>
+        }
+
     </dl>
 </div>
 <p>

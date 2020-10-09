@@ -63,6 +63,14 @@
             @Html.DisplayFor(model => model.City)
         </dd>
 
+        <dt>
+            Opdrachten
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => Model.Reparatieopdrachtens.Count)
+        </dd>
+
     </dl>
 
     @using (Html.BeginForm()) {
