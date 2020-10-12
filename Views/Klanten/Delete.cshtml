@@ -12,20 +12,20 @@
     <hr />
     <dl class="dl-horizontal">
         @*<dt>
-            @Html.DisplayNameFor(model => model.Firstname)
-        </dt>
+                @Html.DisplayNameFor(model => model.Firstname)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Firstname)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Firstname)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Middlename)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Middlename)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Middlename)
-        </dd>*@
+            <dd>
+                @Html.DisplayFor(model => model.Middlename)
+            </dd>*@
 
         <dt>
             @*@Html.DisplayNameFor(model => model.Lastname)*@
@@ -73,7 +73,8 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

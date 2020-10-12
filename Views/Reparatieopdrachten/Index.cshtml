@@ -46,8 +46,7 @@
 
     @foreach (var item in Model)
     {
-        if (!item.Klant.isdeleted == true)
-        {
+        
             string backgroundClass = "background - color:#FFFFFF";
 
             if (item.Startdate.Ticks < (DateTime.Now.Ticks - 864000000000) && item.Status.ToString() == "Pending")
@@ -104,7 +103,7 @@
         @Html.ActionLink("Verwijder", "Delete", new { id = item.Id })
     </td>
 </tr>
-        }
+        
     }
 
 </table>

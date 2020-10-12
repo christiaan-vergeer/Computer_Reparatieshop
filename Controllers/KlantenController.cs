@@ -112,9 +112,19 @@ namespace Computer_Reparatieshop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+           
+            
+            foreach(var item in db.reparatieopdrachtens.ToList())
+            {
+                if(id == item.Klant.Id)
+                {
+                    db.reparatieopdrachtens.Remove(item);
+                }
+                db.SaveChanges();
+            }
+
             Klant klanten = db.klantens.Find(id);
             klanten.isdeleted = true;
-
             db.Entry(klanten).State = EntityState.Modified;
             //db.klantens.Remove(klanten);
             db.SaveChanges();
