@@ -8,10 +8,10 @@ namespace Computer_Reparatieshop.ViewModels
 {
     public class OnderdelenReparatieViewModel
     {
-       public ICollection<PartcheckboxViewmodel> CB { get; set; }
-       public Reparatieopdracht RO { get; set; }
+       public ICollection<PartcheckboxViewmodel> checkbox { get; set; }
+       public Reparatieopdracht Reparatieopdracht { get; set; }
 
-        public ComputerPart CP { get; set; }
+       // public ComputerPart ComputerPart { get; set; }
 
     }
 }
