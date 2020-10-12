@@ -6,47 +6,74 @@
 
 <h2>Reparatie Opdrachten</h2>
 <br />
-<div class="panel panel-primary">
-   <div class="panel-heading">
-        in afwachting = @ViewBag.pending | in behandeling = @ViewBag.underway | wachten op onderdelen = @ViewBag.waitingforpart | klaar = @ViewBag.done
-   </div>
-</div>
-
-<p>
-    @Html.ActionLink("Maak een nieuwe opdracht aan", "Create")
-</p>
-
 <table class="table">
     <tr>
         <th>
-            @*@Html.DisplayNameFor(model => model.Name)*@
-            Naam Opdracht
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    in afwachting = @ViewBag.pending
+                </div>
+            </div>
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.Startdate)*@
-            Startdatum
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    in behandeling = @ViewBag.underway
+                </div>
+            </div>
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.Enddate)*@
-            Einddatum
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    wachten op onderdelen = @ViewBag.waitingforpart
+                </div>
+            </div>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Status)
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    klaar = @ViewBag.done
+                </div>
+            </div>
         </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.Status)*@
-            Klant
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.Status)*@
-            Reparateur
-        </th>
-        <th></th>
     </tr>
+    </table>
 
-    @foreach (var item in Model)
-    {
-        
+    <p>
+        @Html.ActionLink("Maak een nieuwe opdracht aan", "Create")
+    </p>
+
+    <table class="table">
+        <tr>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Name)*@
+                Naam Opdracht
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Startdate)*@
+                Startdatum
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Enddate)*@
+                Einddatum
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Status)*@
+                Klant
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Status)*@
+                Reparateur
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+
             string backgroundClass = "background - color:#FFFFFF";
 
             if (item.Startdate.Ticks < (DateTime.Now.Ticks - 864000000000) && item.Status.ToString() == "Pending")
@@ -77,33 +104,33 @@
             }
 
 
-<tr style=@backgroundClass>
-    <td>
-        @Html.DisplayFor(modelItem => item.Name)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Startdate)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Enddate)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Status)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Klant.Fullname)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Reparateur.FullName)
-    </td>
-    <td>
-        @Html.ActionLink("Pas Aan", "Edit", new { id = item.Id }) |
-        @Html.ActionLink("Onderdelen", "Onderdelen", new { id = item.Id }) |
-        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-        @Html.ActionLink("Verwijder", "Delete", new { id = item.Id })
-    </td>
-</tr>
-        
-    }
+            <tr style=@backgroundClass>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Startdate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Enddate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Klant.Fullname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reparateur.FullName)
+                </td>
+                <td>
+                    @Html.ActionLink("Pas Aan", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Onderdelen", "Onderdelen", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Verwijder", "Delete", new { id = item.Id })
+                </td>
+            </tr>
 
-</table>
+        }
+
+    </table>
