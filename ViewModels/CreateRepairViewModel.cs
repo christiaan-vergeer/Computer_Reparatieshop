@@ -15,6 +15,8 @@ namespace Computer_Reparatieshop.ViewModels
         public List<Reparateur> reparateurs { get; set; }
         public int ReparateurId { get; set; }
 
+        public int reparateurtime { get; set; }
+
         public List<ComputerPart> computerParts { get; set; }
         public int ComputerpartId { get; set; }
     }
