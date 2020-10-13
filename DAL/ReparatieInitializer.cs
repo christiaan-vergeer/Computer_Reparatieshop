@@ -11,8 +11,10 @@ namespace Computer_Reparatieshop.DAL
 {
     public class ReparatieInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<ReparatieContext>
     {
+        
         protected override void Seed(ReparatieContext context)
-        {
+        {            
+
             var klantens = new List<Klant>
             {
                 new Klant{Firstname="chris",Middlename="",Lastname="vergeer",Fullname="chris vergeer",Phonenumber="06-11799450",Adress="gildestraat 17",City="Amserfoort"},
@@ -50,7 +52,7 @@ namespace Computer_Reparatieshop.DAL
 
             var reparaties = new List<Reparatieopdracht>
             {
-                new Reparatieopdracht{Name="vervangen computerscherm", Startdate = DateTime.Parse("2020-10-02"), Enddate = DateTime.Parse("2020-10-22"),price = 120.00, ComputerParts = { } , Klant = klantens.FirstOrDefault(r => r.Id == 1) , Reparateur=reparateurs.FirstOrDefault(r =>r.Id==1), Details = "zit een barst in het beeldscherm, verder geen schade", Status = Status.Pending},
+                new Reparatieopdracht{Name="vervangen computerscherm", Startdate = DateTime.Parse("2020-10-02"), Enddate = DateTime.Parse("2020-10-22"),price = 120.00, Klant = klantens.FirstOrDefault(r => r.Id == 1) , Reparateur=reparateurs.FirstOrDefault(r =>r.Id==1), Details = "zit een barst in het beeldscherm, verder geen schade", Status = Status.Pending},
                 new Reparatieopdracht{Name="kappot toetsenbord", Startdate = DateTime.Parse("2020-10-01"), Enddate = DateTime.Parse("2020-10-22"),price = 50.00, Klant = klantens.FirstOrDefault(r => r.Id == 1),Reparateur=reparateurs.FirstOrDefault(r =>r.Id==1),Details = "toetsenbord reageerd niet op aanslagen, ziet er wel in oorde uit", Status = Status.Pending},
                 new Reparatieopdracht{Name="kappote accu", Startdate = DateTime.Parse("2020-10-12"), Enddate = DateTime.Parse("2020-10-22"),price = 340.00, Klant = klantens.FirstOrDefault(r => r.Id == 3),Reparateur=reparateurs.FirstOrDefault(r =>r.Id==2) ,Details = "accu laat niet op, laptop start wel op met stroom aanvoer", Status = Status.Pending},
                 new Reparatieopdracht{Name="blue screen", Startdate = DateTime.Parse("2020-10-21"), Enddate = DateTime.Parse("2020-10-22"),price = 800.00, Klant = klantens.FirstOrDefault(r => r.Id == 4),Reparateur=reparateurs.FirstOrDefault(r =>r.Id==3) ,Details = "computer geeft een blue screen op startup, lijkt verder in oorde", Status = Status.InProgress},
@@ -62,7 +64,7 @@ namespace Computer_Reparatieshop.DAL
             reparaties.ForEach(s => context.reparatieopdrachtens.Add(s));
             context.SaveChanges();
 
-            
+
         }
     }
 }
