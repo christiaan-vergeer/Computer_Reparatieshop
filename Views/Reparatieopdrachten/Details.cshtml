@@ -44,7 +44,7 @@
 
         <dd>
             @*@(Model.Reparatieopdracht.Reparateur.Wage*((((Model.Reparatieopdracht.Enddate.Ticks - Model.Reparatieopdracht.Startdate.Ticks)/ 36000000000)/24)*8) )*@
-            $@Html.DisplayFor(Model =>Model.Reparatieopdracht.price)
+            €@Html.DisplayFor(Model =>Model.Reparatieopdracht.price)
         </dd>
 
         <dt>
