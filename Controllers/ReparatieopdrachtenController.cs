@@ -281,15 +281,24 @@ namespace Computer_Reparatieshop.Controllers
             reparatieOpdracht.ComputerParts.Clear();
 
 
-            for (var i = 0; i < onderdelenReparatieViewModel.MemmoryID.Count(); i++)
+            //for (var i = 0; i < onderdelenReparatieViewModel.MemmoryID.Count(); i++)
+            //{
+            //    var memID = onderdelenReparatieViewModel.MemmoryID[i];
+            //    if (onderdelenReparatieViewModel.checker[i] == true)
+            //    {
+            //        reparatieOpdracht.ComputerParts.Add(db.ComputerParts.FirstOrDefault(r => r.Id == memID));
+            //    }
+            //}
+
+            foreach (var i in onderdelenReparatieViewModel.MemmoryID)
             {
-                var memID = onderdelenReparatieViewModel.MemmoryID[i];
-                if (onderdelenReparatieViewModel.checker[i] == true)
+                int counter = i-1;
+                var memID = onderdelenReparatieViewModel.MemmoryID[counter];
+                if (onderdelenReparatieViewModel.checker[counter] == true)
                 {
                     reparatieOpdracht.ComputerParts.Add(db.ComputerParts.FirstOrDefault(r => r.Id == memID));
                 }
             }
-
 
             db.Entry(reparatieOpdracht).State = EntityState.Modified;
             db.SaveChanges();
