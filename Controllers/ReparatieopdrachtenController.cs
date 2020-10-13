@@ -281,7 +281,7 @@ namespace Computer_Reparatieshop.Controllers
             reparatieOpdracht.ComputerParts.Clear();
 
 
-            for (var i = 1; i < onderdelenReparatieViewModel.MemmoryID.Count(); i++)
+            for (var i = 0; i < onderdelenReparatieViewModel.MemmoryID.Count(); i++)
             {
                 var memID = onderdelenReparatieViewModel.MemmoryID[i];
                 if (onderdelenReparatieViewModel.checker[i] == true)
