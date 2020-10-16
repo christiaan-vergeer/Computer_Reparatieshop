@@ -43,7 +43,7 @@
         </dd>
 
         <dt>
-            Opdrachten
+            Opdracht(en)
         </dt>
 
         <dd>
@@ -56,10 +56,10 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            verwijderd ook de bijbehorende opdrachten <br />
-            <input type="submit" value="Verwijder" class="btn btn-default" /> |
-            @Html.ActionLink("Terug naar lijst", "Index")
-        </div>
+<div class="form-actions no-color">
+    <b>PAS OP! Dit verwijderd ook alle bijbehorende opdrachten.</b><br />
+    <input type="submit" value="Verwijder" class="btn btn-default" /> |
+@Html.ActionLink("Terug naar lijst", "Index")
+</div>
     }
 </div>
