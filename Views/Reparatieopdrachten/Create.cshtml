@@ -14,12 +14,7 @@
 <div class="form-horizontal">
     <h4>Reparatieopdracht aanmaken</h4>
     <hr />
-    <style>
-        textarea {
-            resize: none;
-        }
-    </style>
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+       @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
         @Html.LabelFor(model => model.Reparatieopdracht.Name, "Naam reparatie", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -47,7 +42,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Reparatieopdracht.Details, "Details reparatie", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.TextAreaFor(model => model.Reparatieopdracht.Details, new { cols = "50", rows = "15", @draggable = "false", @resize = "none" })
+            @Html.TextAreaFor(model => model.Reparatieopdracht.Details, new { rows = 15 })
             @Html.ValidationMessageFor(model => model.Reparatieopdracht.Details, "", new { @class = "text-danger" })
         </div>
     </div>
