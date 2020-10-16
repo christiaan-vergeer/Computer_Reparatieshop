@@ -38,11 +38,13 @@ namespace Computer_Reparatieshop.Models
 
     public enum Status
     {
+        [Display(Name = "In afwachting")]
         Pending,
         [Display(Name = "In behandeling")]
         InProgress,
-        [Display(Name = "In afwachting van onderdelen")]
+        [Display(Name = "Wachten op onderdelen")]
         WaitingForParts,
+        [Display(Name = "Afgehandeld")]
         Done
     }
     
