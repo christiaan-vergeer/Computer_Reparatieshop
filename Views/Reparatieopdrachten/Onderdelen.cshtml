@@ -12,7 +12,7 @@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 <div class="form-horizontal">
-    <h4>Reparatieopdracht</h4>
+    <h4>@Html.DisplayTextFor(model => model.Reparatieopdracht.Name)</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
