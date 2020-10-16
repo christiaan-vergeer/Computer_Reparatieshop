@@ -40,11 +40,13 @@ namespace Computer_Reparatieshop.DAL
 
             var computerpart = new List<ComputerPart>
             {
-                new ComputerPart{ Name="Intel Processor 1", Price=199, Vendor=vendor.Intel, Amount=5},
-                new ComputerPart{ Name="AMD Processor 2", Price=299, Vendor=vendor.AMD, Amount=4},
-                new ComputerPart{ Name="Intel Processor 3", Price=399, Vendor=vendor.Intel, Amount=3},
-                new ComputerPart{ Name="Gygabyte Processor 4", Price=499, Vendor=vendor.Gigabyte, Amount=2},
-                new ComputerPart{ Name="IBM Processor 5", Price=599, Vendor=vendor.IBM, Amount=1},
+                new ComputerPart{ Name="Intel Processor", Price=199, Vendor=vendor.Intel, Amount=43},
+                new ComputerPart{ Name="AMD speakers", Price=299, Vendor=vendor.AMD, Amount=27},
+                new ComputerPart{ Name="Intel Mousepad", Price=399, Vendor=vendor.Intel, Amount=93},
+                new ComputerPart{ Name="Gygabyte Processor", Price=499, Vendor=vendor.Gigabyte, Amount=32},
+                new ComputerPart{ Name="IBM Moederbord", Price=599, Vendor=vendor.IBM, Amount=14},
+                new ComputerPart{ Name="ILED beeldscherm", Price=1000, Vendor=vendor.HP, Amount=12},
+                new ComputerPart{ Name="GTX 4900", Price = 9999999, Vendor=vendor.Gigabyte, Amount=1}
             };
 
             computerpart.ForEach(s => context.ComputerParts.Add(s));
@@ -52,17 +54,18 @@ namespace Computer_Reparatieshop.DAL
 
             var reparaties = new List<Reparatieopdracht>
             {
-                new Reparatieopdracht{Name="vervangen computerscherm", Startdate = DateTime.Parse("2020-10-02"), Enddate = DateTime.Parse("2020-10-22"),price = 120.00, Klant = klantens.FirstOrDefault(r => r.Id == 1) , Reparateur=reparateurs.FirstOrDefault(r =>r.Id==1), Details = "zit een barst in het beeldscherm, verder geen schade", Status = Status.Pending},
-                new Reparatieopdracht{Name="kappot toetsenbord", Startdate = DateTime.Parse("2020-10-01"), Enddate = DateTime.Parse("2020-10-22"),price = 50.00, Klant = klantens.FirstOrDefault(r => r.Id == 1),Reparateur=reparateurs.FirstOrDefault(r =>r.Id==1),Details = "toetsenbord reageerd niet op aanslagen, ziet er wel in oorde uit", Status = Status.Pending},
-                new Reparatieopdracht{Name="kappote accu", Startdate = DateTime.Parse("2020-10-12"), Enddate = DateTime.Parse("2020-10-22"),price = 340.00, Klant = klantens.FirstOrDefault(r => r.Id == 3),Reparateur=reparateurs.FirstOrDefault(r =>r.Id==2) ,Details = "accu laat niet op, laptop start wel op met stroom aanvoer", Status = Status.Pending},
-                new Reparatieopdracht{Name="blue screen", Startdate = DateTime.Parse("2020-10-21"), Enddate = DateTime.Parse("2020-10-22"),price = 800.00, Klant = klantens.FirstOrDefault(r => r.Id == 4),Reparateur=reparateurs.FirstOrDefault(r =>r.Id==3) ,Details = "computer geeft een blue screen op startup, lijkt verder in oorde", Status = Status.InProgress},
-                new Reparatieopdracht{Name="kappote usb", Startdate = DateTime.Parse("2020-10-12"), Enddate = DateTime.Parse("2020-10-22"),price = 23.45, Klant = klantens.FirstOrDefault(r => r.Id == 2),Reparateur=reparateurs.FirstOrDefault(r =>r.Id==4) ,Details = "usb werkt niet, vervanging warschijnlijk nodig", Status = Status.WaitingForParts},
-                new Reparatieopdracht{Name="start niet op", Startdate = DateTime.Parse("2020-10-12"), Enddate = DateTime.Parse("2020-10-22"),price = 634.99, Klant = klantens.FirstOrDefault(r => r.Id == 3),Reparateur=reparateurs.FirstOrDefault(r =>r.Id==3) ,Details = "laptop wijgert op te starten, lijkt harwarematig in orde", Status = Status.WaitingForParts},
-                new Reparatieopdracht{Name="geen internet", Startdate = DateTime.Parse("2020-11-02"), Enddate = DateTime.Parse("2020-10-22"),price = 35999.99, Klant = klantens.FirstOrDefault(r => r.Id == 2),Reparateur=reparateurs.FirstOrDefault(r =>r.Id==2) ,Details = "laptop wijgert met internet te verbinden, waarschijnlijk een kappote zender", Status = Status.Done, }
+                new Reparatieopdracht{Name="vervangen computerscherm", Startdate = DateTime.Parse("2020-10-02"), Enddate = DateTime.Parse("2020-10-22"),price = 120.00, Klant = klantens.FirstOrDefault(r => r.Id == 1) , ComputerParts = new List<ComputerPart>{context.ComputerParts.FirstOrDefault(r => r.Id == 1), context.ComputerParts.FirstOrDefault(r => r.Id == 3) }, Reparateur=reparateurs.FirstOrDefault(r =>r.Id==1), Details = "zit een barst in het beeldscherm, verder geen schade", Status = Status.Pending},
+                new Reparatieopdracht{Name="kappot toetsenbord", Startdate = DateTime.Parse("2020-10-01"), Enddate = DateTime.Parse("2020-10-22"),price = 50.00, Klant = klantens.FirstOrDefault(r => r.Id == 1),Reparateur=reparateurs.FirstOrDefault(r =>r.Id==1), ComputerParts = new List<ComputerPart>{context.ComputerParts.FirstOrDefault(r => r.Id == 4),context.ComputerParts.FirstOrDefault(r => r.Id == 6),context.ComputerParts.FirstOrDefault(r => r.Id == 5) },Details = "toetsenbord reageerd niet op aanslagen, ziet er wel in oorde uit", Status = Status.Pending},
+                new Reparatieopdracht{Name="kappote accu", Startdate = DateTime.Parse("2020-10-12"), Enddate = DateTime.Parse("2020-10-22"),price = 340.00, Klant = klantens.FirstOrDefault(r => r.Id == 3),Reparateur=reparateurs.FirstOrDefault(r =>r.Id==2) , ComputerParts = new List<ComputerPart>{context.ComputerParts.FirstOrDefault(r => r.Id == 3) ,context.ComputerParts.FirstOrDefault(r => r.Id == 5) },Details = "accu laat niet op, laptop start wel op met stroom aanvoer", Status = Status.Pending},
+                new Reparatieopdracht{Name="blue screen", Startdate = DateTime.Parse("2020-10-21"), Enddate = DateTime.Parse("2020-10-22"),price = 800.00, Klant = klantens.FirstOrDefault(r => r.Id == 4),Reparateur=reparateurs.FirstOrDefault(r =>r.Id==3) , ComputerParts = new List<ComputerPart>{context.ComputerParts.FirstOrDefault(r => r.Id == 1),context.ComputerParts.FirstOrDefault(r => r.Id == 7) },Details = "computer geeft een blue screen op startup, lijkt verder in oorde", Status = Status.InProgress},
+                new Reparatieopdracht{Name="kappote usb", Startdate = DateTime.Parse("2020-10-12"), Enddate = DateTime.Parse("2020-10-22"),price = 23.45, Klant = klantens.FirstOrDefault(r => r.Id == 2),Reparateur=reparateurs.FirstOrDefault(r =>r.Id==4) , ComputerParts = new List<ComputerPart>{context.ComputerParts.FirstOrDefault(r => r.Id == 5) },Details = "usb werkt niet, vervanging warschijnlijk nodig", Status = Status.WaitingForParts},
+                new Reparatieopdracht{Name="start niet op", Startdate = DateTime.Parse("2020-10-12"), Enddate = DateTime.Parse("2020-10-22"),price = 634.99, Klant = klantens.FirstOrDefault(r => r.Id == 3),Reparateur=reparateurs.FirstOrDefault(r =>r.Id==3) , ComputerParts = new List<ComputerPart>{context.ComputerParts.FirstOrDefault(r => r.Id == 1),context.ComputerParts.FirstOrDefault(r => r.Id == 3) },Details = "laptop wijgert op te starten, lijkt harwarematig in orde", Status = Status.WaitingForParts},
+                new Reparatieopdracht{Name="geen internet", Startdate = DateTime.Parse("2020-11-02"), Enddate = DateTime.Parse("2020-10-22"),price = 35999.99, Klant = klantens.FirstOrDefault(r => r.Id == 2),Reparateur=reparateurs.FirstOrDefault(r =>r.Id==2) , ComputerParts = new List<ComputerPart>{ context.ComputerParts.FirstOrDefault(r => r.Id == 3),context.ComputerParts.FirstOrDefault(r => r.Id == 6),context.ComputerParts.FirstOrDefault(r => r.Id == 7)},Details = "laptop wijgert met internet te verbinden, waarschijnlijk een kappote zender", Status = Status.Done, }
             };
 
             reparaties.ForEach(s => context.reparatieopdrachtens.Add(s));
             context.SaveChanges();
+
 
 
         }

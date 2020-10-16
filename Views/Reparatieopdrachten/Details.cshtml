@@ -39,7 +39,7 @@
         </dt>
 
         <dd>
-            €@Html.DisplayFor(Model =>Model.Reparatieopdracht.price)
+            €@Html.DisplayFor(Model => Model.Reparatieopdracht.price)
         </dd>
 
         <dt>
@@ -66,10 +66,21 @@
         </dd>
 
         <dt>
-            Details
+            Onderdelen
         </dt>
 
+        <dd>
+            @foreach (var item in Model.Reparatieopdracht.ComputerParts)
+            {
+                @Html.DisplayFor(model => item.Name)
+                <br />
+            }
 
+        </dd>
+
+        <dt>
+            Details
+        </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Reparatieopdracht.Details)
