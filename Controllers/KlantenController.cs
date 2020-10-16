@@ -43,8 +43,6 @@ namespace Computer_Reparatieshop.Controllers
         }
 
         // POST: Klanten/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Firstname,Middlename,Lastname,Phonenumber,Adress,City")] Klant klanten)
@@ -76,8 +74,6 @@ namespace Computer_Reparatieshop.Controllers
         }
 
         // POST: Klanten/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Firstname,Middlename,Lastname,Phonenumber,Adress,City")] Klant klanten)
@@ -111,8 +107,7 @@ namespace Computer_Reparatieshop.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
-        {
-           
+        {    
             
             foreach(var item in db.reparatieopdrachtens.ToList())
             {
@@ -126,7 +121,6 @@ namespace Computer_Reparatieshop.Controllers
             Klant klanten = db.klantens.Find(id);
             klanten.isdeleted = true;
             db.Entry(klanten).State = EntityState.Modified;
-            //db.klantens.Remove(klanten);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
