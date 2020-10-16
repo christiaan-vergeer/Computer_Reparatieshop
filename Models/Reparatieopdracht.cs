@@ -22,6 +22,7 @@ namespace Computer_Reparatieshop.Models
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime Enddate { get; set; }
+        [Display(Name="Prijs")]
         public double price { get; set; }
         public string Details { get; set; } 
 
