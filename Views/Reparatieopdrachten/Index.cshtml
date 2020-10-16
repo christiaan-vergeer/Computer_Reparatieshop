@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Reparatie Opdrachten</h2>
+<h2>Reparatieopdrachten</h2>
 <br />
 <table class="table">
     <tr>
@@ -40,32 +40,28 @@
     </table>
 
     <p>
+
         @Html.ActionLink("Maak een nieuwe opdracht aan", "Create")
     </p>
 
     <table class="table">
         <tr>
             <th>
-                @*@Html.DisplayNameFor(model => model.Name)*@
                 Naam Opdracht
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.Startdate)*@
                 Startdatum
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.Enddate)*@
                 Einddatum
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Status)
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.Status)*@
                 Klant
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.Status)*@
                 Reparateur
             </th>
             <th></th>

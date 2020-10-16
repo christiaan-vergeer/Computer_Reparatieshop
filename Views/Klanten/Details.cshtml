@@ -4,30 +4,13 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Details voor</h2>
 
 <div>
-    <h4>Klanten</h4>
+    <h4>@Html.DisplayFor(model => model.Fullname)</h4>
     <hr />
     <dl class="dl-horizontal">
-        @*<dt>
-            @Html.DisplayNameFor(model => model.Firstname)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Firstname)
-        </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.Middlename)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Middlename)
-        </dd>*@
-
-        <dt>
-            @*@Html.DisplayNameFor(model => model.Lastname)*@
             Naam
         </dt>
 
@@ -36,7 +19,6 @@
         </dd>
 
         <dt>
-            @*@Html.DisplayNameFor(model => model.Phonenumber)*@
             Telefoonnummer
         </dt>
 
@@ -45,8 +27,7 @@
         </dd>
 
         <dt>
-            @*@Html.DisplayNameFor(model => model.Adress)*@
-            Adress
+            Adres
         </dt>
 
         <dd>
@@ -54,7 +35,6 @@
         </dd>
 
         <dt>
-            @*@Html.DisplayNameFor(model => model.City)*@
             Stad
         </dt>
 
@@ -70,7 +50,6 @@
         {
             <dd>
                 @Html.ActionLink(item.Name,  "Details", "ReparatieOpdrachten", new { id = item.Id }, null) 
-                @*@Html.DisplayFor(model => item.Name)*@
             </dd>
         }
 

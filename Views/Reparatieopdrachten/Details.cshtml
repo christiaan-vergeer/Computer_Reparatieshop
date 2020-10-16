@@ -4,14 +4,13 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Details voor </h2>
 
 <div>
-    <h4>Reparatieopdrachten</h4>
+    <h4>@Html.DisplayFor(model => model.Reparatieopdracht.Name)</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @*@Html.DisplayNameFor(model => model.Name)*@
             Naam
         </dt>
 
@@ -20,7 +19,6 @@
         </dd>
 
         <dt>
-            @*@Html.DisplayNameFor(model => model.Startdate)*@
             Startdatum
         </dt>
 
@@ -29,7 +27,6 @@
         </dd>
 
         <dt>
-            @*@Html.DisplayNameFor(model => model.Enddate)*@
             Einddatum
         </dt>
 
@@ -38,17 +35,14 @@
         </dd>
 
         <dt>
-            @*@Html.DisplayNameFor(model => model.Status)*@
-            prijs
+            price
         </dt>
 
         <dd>
-            @*@(Model.Reparatieopdracht.Reparateur.Wage*((((Model.Reparatieopdracht.Enddate.Ticks - Model.Reparatieopdracht.Startdate.Ticks)/ 36000000000)/24)*8) )*@
             €@Html.DisplayFor(Model =>Model.Reparatieopdracht.price)
         </dd>
 
         <dt>
-            @*@Html.DisplayNameFor(model => model.Status)*@
             Status
         </dt>
 
@@ -57,38 +51,21 @@
         </dd>
 
         <dt>
-            @*@Html.DisplayNameFor(model => model.Status)*@
             Klant
         </dt>
 
         <dd>
             @Html.ActionLink(Model.Reparatieopdracht.Klant.Fullname, "Details", "Klanten", new { id = Model.Reparatieopdracht.Klant.Id }, null)
-            @*@Html.DisplayFor(model => model.Reparatieopdracht.Klant.Fullname)*@
         </dd>
         <dt>
-            @*@Html.DisplayNameFor(model => model.Status)*@
             Reparateur
         </dt>
 
         <dd>
             @Html.ActionLink(Model.Reparatieopdracht.Reparateur.FullName, "Details", "Reparateur", new { id = Model.Reparatieopdracht.Reparateur.Id }, null)
-            @*@Html.DisplayFor(model => model.Reparatieopdracht.Reparateur.FullName)*@
         </dd>
 
         <dt>
-            onderdelen
-        </dt>
-
-        <dd>
-            @foreach (var item in Model.Reparatieopdracht.ComputerParts)
-            {
-                @Html.DisplayFor(model => item.Name)
-                <br />
-            }
-        </dd>
-
-        <dt>
-            @*@Html.DisplayNameFor(model => model.Status)*@
             Details
         </dt>
 
