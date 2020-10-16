@@ -43,8 +43,6 @@ namespace Computer_Reparatieshop.Controllers
         }
 
         // POST: Reparateur/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,FirstName,InFix,LastName,Wage")] Reparateur reparateur)
@@ -76,8 +74,6 @@ namespace Computer_Reparatieshop.Controllers
         }
 
         // POST: Reparateur/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,FirstName,InFix,LastName,Wage")] Reparateur reparateur)

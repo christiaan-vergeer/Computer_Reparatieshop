@@ -24,14 +24,10 @@ namespace Computer_Reparatieshop.Controllers
         // GET: Reparatieopdrachten
         public ActionResult Index()
         {
-
-            //ViewBag.Message = "tabel met info";
-            ViewBag.Message2 = "test";
             ViewBag.pending = Countstate(Status.Pending);
             ViewBag.underway = Countstate(Status.InProgress);
             ViewBag.waitingforpart = Countstate(Status.WaitingForParts);
             ViewBag.done = Countstate(Status.Done);
-
 
             return View(db.reparatieopdrachtens.ToList());
         }
@@ -84,8 +80,6 @@ namespace Computer_Reparatieshop.Controllers
         }
 
         // POST: Reparatieopdrachten/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [DefaultValue(typeof(Status), "1")]
@@ -103,7 +97,6 @@ namespace Computer_Reparatieshop.Controllers
 
             return View(createRepairViewModel);
         }
-        //[Bind(Include = "Id,Name,Startdate,Enddate,Status,Details")]
 
         // GET: Reparatieopdrachten/Edit/5
         public ActionResult Edit(int? id)
@@ -125,8 +118,6 @@ namespace Computer_Reparatieshop.Controllers
         }
 
         // POST: Reparatieopdrachten/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Reparatieopdracht, KlantId, ReparateurId,reparateurtime")] CreateRepairViewModel createRepairViewModel)
@@ -189,7 +180,7 @@ namespace Computer_Reparatieshop.Controllers
             Reparatieopdracht reparatieopdracht = db.reparatieopdrachtens.Find(id);
             List<int> partId = new List<int>();
             List<string> partname = new List<string>();
-            List<bool> test = new List<bool>();
+            List<bool> boxsetter = new List<bool>();
 
             foreach (var listId in db.ComputerParts.ToList())
             {
@@ -205,11 +196,11 @@ namespace Computer_Reparatieshop.Controllers
             {
                 if (db.reparatieopdrachtens.FirstOrDefault(r => r.Id == id).ComputerParts.Contains(part))
                 {
-                    test.Add(true);
+                    boxsetter.Add(true);
                 }
                 else
                 {
-                    test.Add(false);
+                    boxsetter.Add(false);
                 }
 
             }
@@ -218,7 +209,7 @@ namespace Computer_Reparatieshop.Controllers
             var OnderdelenReparatieViewModel = new OnderdelenReparatieViewModel
             {
                 MemmoryID = partId,
-                checker = test,
+                checker = boxsetter,
                 Partname = partname,
 
                 Reparatieopdracht = db.reparatieopdrachtens.Include(r => r.Klant).Include(r => r.Reparateur).FirstOrDefault(r => r.Id == id)
@@ -229,28 +220,16 @@ namespace Computer_Reparatieshop.Controllers
         }
 
         // POST: Reparatieopdrachten/Onderdelen/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Onderdelen([Bind(Include = "Reparatieopdracht,Partname, checkbox, IsChecked, checker,MemmoryID")] OnderdelenReparatieViewModel onderdelenReparatieViewModel)
         {
            //if (ModelState.IsValid)
-            //{
+           //{
 
             var reparatieOpdracht = db.reparatieopdrachtens.Include(r => r.ComputerParts).FirstOrDefault(r => r.Id == onderdelenReparatieViewModel.Reparatieopdracht.Id);
 
             reparatieOpdracht.ComputerParts.Clear();
-
-
-            //for (var i = 0; i < onderdelenReparatieViewModel.MemmoryID.Count(); i++)
-            //{
-            //    var memID = onderdelenReparatieViewModel.MemmoryID[i];
-            //    if (onderdelenReparatieViewModel.checker[i] == true)
-            //    {
-            //        reparatieOpdracht.ComputerParts.Add(db.ComputerParts.FirstOrDefault(r => r.Id == memID));
-            //    }
-            //}
 
             foreach (var i in onderdelenReparatieViewModel.MemmoryID)
             {
@@ -265,8 +244,8 @@ namespace Computer_Reparatieshop.Controllers
             db.Entry(reparatieOpdracht).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
+
             //}
-            //
             //return View(onderdelenReparatieViewModel);
         }
 
