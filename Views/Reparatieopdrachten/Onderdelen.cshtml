@@ -41,7 +41,7 @@
                 <td>
                     @Html.DisplayFor(model => model.Partname[i])
                 </td>
-                
+
                 <td>
                     @Html.CheckBoxFor(Model => Model.checker[i], new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.checker[i], "", new { @class = "text-danger" })
@@ -52,13 +52,13 @@
         }
 
     </table>
-
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
+        <div class="col-md-offset-0">
             <input type="submit" value="Opslaan" class="btn btn-default" />
 
         </div>
     </div>
+
 </div>
 }
 
