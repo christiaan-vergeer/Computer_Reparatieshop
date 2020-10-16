@@ -4,7 +4,7 @@
     ViewBag.Title = "Aanpassen reparatieopdracht";
 }
 
-<h2>Reparatieopdracht</h2>
+<h2>Reparatieopdracht @Html.DisplayFor(model => model.Reparatieopdracht.Name, new { htmlAttributes = new { @class = "form-control" } })</h2>
 
 
 @using (Html.BeginForm())
