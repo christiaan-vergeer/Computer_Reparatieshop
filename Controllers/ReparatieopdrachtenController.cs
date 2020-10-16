@@ -113,13 +113,6 @@ namespace Computer_Reparatieshop.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-
-            //Reparatieopdracht reparatieopdrachten = db.reparatieopdrachtens.Find(id);
-            //if (reparatieopdrachten == null)
-            //{
-            //    return HttpNotFound();
-            //}
-
             var CreateReparatieViewModel = new CreateRepairViewModel
             {
                 Reparatieopdracht = db.reparatieopdrachtens.Include(r => r.Klant).Include(r => r.Reparateur).FirstOrDefault(r => r.Id == id),
@@ -140,11 +133,6 @@ namespace Computer_Reparatieshop.Controllers
         {
             if (ModelState.IsValid)
             {
-                //var rearatieOpdracht = createRepairViewModel.Reparatieopdracht;
-                //reparatieopdracht.Klant = db.klantens.Find(createRepairViewModel.KlantId);
-
-                //db.Entry(reparatieopdracht.Klant).State = EntityState.Modified;
-
                 var reparatieOpdracht = db.reparatieopdrachtens.Include(r => r.Klant).Include(r => r.Reparateur).FirstOrDefault(r => r.Id == createRepairViewModel.Reparatieopdracht.Id);
 
                 reparatieOpdracht.Name = createRepairViewModel.Reparatieopdracht.Name;
@@ -198,36 +186,14 @@ namespace Computer_Reparatieshop.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-
             Reparatieopdracht reparatieopdracht = db.reparatieopdrachtens.Find(id);
-            //if (reparatieopdrachten == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //List<PartcheckboxViewmodel> pcv = new List<PartcheckboxViewmodel>();
             List<int> partId = new List<int>();
             List<string> partname = new List<string>();
             List<bool> test = new List<bool>();
-            //IDictionary<ComputerPart, bool> partlist = new Dictionary<ComputerPart, bool>();
-            //foreach (var part in db.ComputerParts.ToList())
-            //{
-            //    pcv.Add(new PartcheckboxViewmodel 
-            //    { 
-            //        Amount = part.Amount,
-            //        Id = part.Id,
-            //        Name = part.Name,
-            //        Price = part.Price,
-            //        Vendor = part.Vendor,
-            //        Reparatieopdracht = part.Reparatieopdracht
-            //    });
-
-
-            //}
 
             foreach (var listId in db.ComputerParts.ToList())
             {
-                // partId.Add(db.ComputerParts.FirstOrDefault(r => r.Id.Equals(listId)).Id);
-                partId.Add(listId.Id);
+               partId.Add(listId.Id);
             }
 
             foreach (var partlistname in db.ComputerParts.ToList())
@@ -237,7 +203,6 @@ namespace Computer_Reparatieshop.Controllers
 
             foreach (var part in db.ComputerParts.ToList())
             {
-                // partlist.Add(part, true)
                 if (db.reparatieopdrachtens.FirstOrDefault(r => r.Id == id).ComputerParts.Contains(part))
                 {
                     test.Add(true);
@@ -255,9 +220,6 @@ namespace Computer_Reparatieshop.Controllers
                 MemmoryID = partId,
                 checker = test,
                 Partname = partname,
-                //checkbox = pcv, /*db.ComputerParts.ToList()*/
-                //checkbox = partlist,
-                //ComputerPart = db.ComputerParts.FirstOrDefault(r => r.Id == id),
 
                 Reparatieopdracht = db.reparatieopdrachtens.Include(r => r.Klant).Include(r => r.Reparateur).FirstOrDefault(r => r.Id == id)
             };
@@ -304,16 +266,9 @@ namespace Computer_Reparatieshop.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
             //}
-
-            return View(onderdelenReparatieViewModel);
+            //
+            //return View(onderdelenReparatieViewModel);
         }
-
-
-
-
-
-
-
 
 
         protected override void Dispose(bool disposing)
