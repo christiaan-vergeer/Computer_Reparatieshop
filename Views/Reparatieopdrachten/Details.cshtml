@@ -39,7 +39,7 @@
 
         <dt>
             @*@Html.DisplayNameFor(model => model.Status)*@
-            price
+            prijs
         </dt>
 
         <dd>
@@ -73,6 +73,18 @@
         <dd>
             @Html.ActionLink(Model.Reparatieopdracht.Reparateur.FullName, "Details", "Reparateur", new { id = Model.Reparatieopdracht.Reparateur.Id }, null)
             @*@Html.DisplayFor(model => model.Reparatieopdracht.Reparateur.FullName)*@
+        </dd>
+
+        <dt>
+            onderdelen
+        </dt>
+
+        <dd>
+            @foreach (var item in Model.Reparatieopdracht.ComputerParts)
+            {
+                @Html.DisplayFor(model => item.Name)
+                <br />
+            }
         </dd>
 
         <dt>
